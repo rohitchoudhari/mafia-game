@@ -4,9 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- socket.io -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
     
@@ -14,25 +14,32 @@
 
     </head>
     <body>
-        <div class="container" id="masterContainer">
-        <h1 class="display-4 text-center">Welcome to Mafia Game!</h1>
-        <p1>Login with Room ID shared with you by host.</p1>
-        <div id="login-alerts"></div>
-        <div class="input-group input-group-lg">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-lg">Room ID</span>
+      <nav class="navbar  is-black" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <h1 class="navbar-item title is-3">Mafia Game</h1>
+        </div>
+      </nav>
+      <section class="section">
+      <div class="container"  id="masterContainer">
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control">
+            <input id="nameTxt" class="input" type="text" placeholder="Enter Your Username">
+          </div>
+          </div>
+          <div class="field">
+            <label class="label">Room ID</label>
+            <div class="control">
+              <input id="roomTxt" class="input" type="text" placeholder="Enter Room ID">
             </div>
-            <input type="text" id="roomTxt" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+          </div>
+        <div class="buttons is-centered">
+          <button type="button" id="btnJoin" class="button is-primary">Join Room</button>
+          <button type="button" id="btnCreate" class="button is-primary is-outlined">Create Room</button>
         </div>
-        <div class="input-group input-group-lg">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-lg">Name</span>
-            </div>
-            <input type="text" id="nameTxt" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-        </div>
-        <button type="button" id="btnJoin" class="btn btn-primary btn-lg">Join</button>
-        <button type="button" id="btnCreate" class="btn btn-secondary btn-lg">Create</button>
-        </div>
+      </div>
+      </section>
+      
         <!-- Game JavaScript -->
         <script src="game.js"></script>
         
