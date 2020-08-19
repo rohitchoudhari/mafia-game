@@ -20,7 +20,7 @@ btnCreate.addEventListener('click', function () {
 
 // Listeners
 socket.on('userJoinRequestAccepted', function (data) {
-    masterContainer.innerHTML = '<div class="alert alert-info" role="alert"> Username: '+data.name+', Room ID: '+data.room+' </div>';
+    masterContainer.innerHTML = '<div class="message is-success"><div class="message-header"> Username: '+data.name+', Room ID: '+data.room+' </div></div>';
 })
 
 socket.on('userJoinRequestRejected', function () {
@@ -32,5 +32,5 @@ socket.on('roomCreationFailed', function () {
 });
 
 socket.on('roomCreateRequestAccepted',function (data) {
-    masterContainer.innerHTML = '<div class="alert alert-info" role="alert"> Username: '+data.name+', Room ID: '+data.room+', Host:'+data.host+' </div>';
+    masterContainer.innerHTML = '<div class="message is-success"><div class="message-header"> Username: '+data.name+', Room ID: '+data.room+', Host:'+data.host+'</div> </div>';
 });
