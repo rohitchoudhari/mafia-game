@@ -2,7 +2,7 @@ var express = require('express');
 var socket = require('socket.io');
 var { userJoins, getCurrentUser } = require('./utils/users');
 var { createRoom, checkRoom } = require('./utils/rooms');
-let port = 3000;
+let port = process.env.PORT || 3000;
 
 // App Setup
 var app = express();
