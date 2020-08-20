@@ -14,41 +14,58 @@
 
     </head>
     <body>
+
+      <!-- Navbar Start -->
       <nav class="navbar  is-black" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <h1 class="navbar-item title is-3">Mafia Game</h1>
         </div>
       </nav>
+      <!-- Navbar End -->
+
+      <!-- Main Section Start -->
       <section class="section">
-      <div class="container"  id="masterContainer">
+      <div class="container"  id="mainContainer">
+
+        <!-- Login Section Start -->
         <div class="field">
           <div id="login-alerts"></div>
           <label class="label">Username</label>
           <div class="control">
             <input id="nameTxt" class="input" type="text" placeholder="Enter Your Username">
           </div>
+        </div>
+        <div class="field">
+          <label class="label">Room ID</label>
+          <div class="control">
+            <input id="roomTxt" class="input" type="text" placeholder="Enter Room ID">
           </div>
-          <div class="field">
-            <label class="label">Room ID</label>
-            <div class="control">
-              <input id="roomTxt" class="input" type="text" placeholder="Enter Room ID">
-            </div>
-          </div>
+        </div>
         <div class="buttons is-centered">
           <button type="button" id="btnJoin" class="button is-primary">Join Room</button>
           <button type="button" id="btnCreate" class="button is-primary is-outlined">Create Room</button>
         </div>
+        <!-- Login Section End -->
+
       </div>
       </section>
-      
-        <!-- Game JavaScript -->
-        <script src="game.js"></script>
+      <!-- Main Section End -->
+
+      <!-- Players Connected Table Start -->
+      <section class="section">
+        <div class="container" id="playersTable">
+        </div>
+      </section>
+      <!-- Players Connected Table Start -->
+
+      <!-- Game JavaScript -->
+      <script src="game.js"></script>
         
-        <!-- Bootstrap JavaScript Start -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <!-- Bootstrap JavaScript End -->
+      <!-- Bootstrap JavaScript Start -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+      <!-- Bootstrap JavaScript End -->
 
     </body>
 </html>

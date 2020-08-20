@@ -1,6 +1,6 @@
 var express = require('express');
 var socket = require('socket.io');
-var { userJoins, getCurrentUser } = require('./utils/users');
+var { userJoins, getCurrentUser, getAllUsersFromRoom, isUserRoomPairAbsent } = require('./utils/users');
 var { createRoom, checkRoom } = require('./utils/rooms');
 let port = process.env.PORT || 3000;
 
@@ -21,16 +21,35 @@ io.on('connection', (socket) =>{
 
     //When user joins room
     socket.on('joinRoom',function (data) {
+        
+        console.log('Login data for new user:',data);
+        console.log('Is User Room Pair Absent:',isUserRoomPairAbsent(data));
+        //Validate Room
         if(checkRoom(data.room)){
-            console.log('Logged In:', data);
-            const user = userJoins(socket.id, data.name, data.room, data.host);
-            socket.join(user.room);
-            socket.emit('userJoinRequestAccepted',data);
+            if(isUserRoomPairAbsent(data)){
+                console.log('Logged In:', data);
+                const user = userJoins(socket.id, data.name, data.room, data.host);
+                socket.join(user.room);
+                if(data.name == "spectator@rtb"){
+                    socket.emit('isSpectator',data);
+                }
+                else{
+                    socket.emit('userJoinRequestAccepted',data);
+                }
+                var users_in_room = getAllUsersFromRoom(data.room);
+                //console.log(users_in_room);
+                io.in(data.room).emit('userConnected',users_in_room);
+            }
+            else{
+                console.log('Failed Login (User-Room Pair Already Exists):',data);
+                socket.emit('userJoinRequestRejectedAlreadyExists');
+            }
         }
         else{
-            console.log('Failed Login:',data);
-            socket.emit('userJoinRequestRejected');
+            console.log('Failed Login (Incorrect Room Code):',data);
+            socket.emit('userJoinRequestRejectedIncorrectRoom');
         }
+
     });
 
     //When user creates room
