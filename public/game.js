@@ -24,11 +24,11 @@ socket.on('userJoinRequestAccepted', function (data) {
 })
 
 socket.on('userJoinRequestRejected', function () {
-    document.getElementById('login-alerts').innerHTML = '<div class="alert alert-danger" role="alert">User join in request rejected, kindly check room code.</div>'
+    document.getElementById('login-alerts').innerHTML = '<div class="message is-danger"><div class="message-header">User join in request rejected, kindly check room code.</div></div>'
 });
 
 socket.on('roomCreationFailed', function () {
-    document.getElementById('login-alerts').innerHTML = '<div class="alert alert-danger" role="alert">Room creation failed, kindly change room code.</div>'
+    document.getElementById('login-alerts').innerHTML = '<div class="message is-danger"><div class="message-header">Room creation failed, kindly change room code.</div></div>'
 });
 
 socket.on('roomCreateRequestAccepted',function (data) {
