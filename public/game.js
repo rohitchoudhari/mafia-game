@@ -1,4 +1,4 @@
-var socket = io.connect('http://192.168.29.138:3000');
+var socket = io.connect('https://rtb-mafia-game.herokuapp.com/');
 
 // Query DOM
 var roomVal = document.getElementById('roomTxt');
