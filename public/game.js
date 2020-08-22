@@ -1,5 +1,5 @@
-var socket = io.connect('https://rtb-mafia-game.herokuapp.com/');
-//var socket = io.connect('http://192.168.29.138:3000/');
+//var socket = io.connect('https://rtb-mafia-game.herokuapp.com/');
+var socket = io.connect('http://192.168.29.138:3000/');
 
 // Query DOM
 var roomVal = document.getElementById('roomTxt');
@@ -52,7 +52,7 @@ socket.on('isSpectator', function(data){
 
 
 // Listeners - All Clients
-socket.on('userConnected',function(users_in_room){
+socket.on('updatePlayersTable',function(users_in_room){
     
     //Set Table Headers
     document.getElementById('playersTable').innerHTML = '<div class="message is-info"><div class="message-header"><p>Players Connected</p></div><div class="message-body"><div class="table-container"><table class="table is-fullwidth"><thead><tr><th>Sr. No.</th><th>Player</th></tr></thead><tbody id="tableBody">';

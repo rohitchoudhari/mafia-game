@@ -1,6 +1,6 @@
 var express = require('express');
 var socket = require('socket.io');
-var { userJoins, getCurrentUser, getAllUsersFromRoom, isUserRoomPairAbsent } = require('./utils/users');
+var { userJoins, getCurrentUser, getAllUsersFromRoom, isUserRoomPairAbsent, disconnectRemoveSocketID, getAllUsers } = require('./utils/users');
 var { createRoom, checkRoom } = require('./utils/rooms');
 let port = process.env.PORT || 3000;
 
@@ -38,7 +38,7 @@ io.on('connection', (socket) =>{
                 }
                 var users_in_room = getAllUsersFromRoom(data.room);
                 //console.log(users_in_room);
-                io.in(data.room).emit('userConnected',users_in_room);
+                io.in(data.room).emit('updatePlayersTable',users_in_room);
             }
             else{
                 console.log('Failed Login (User-Room Pair Already Exists):',data);
@@ -52,7 +52,17 @@ io.on('connection', (socket) =>{
 
     });
 
-    //When user creates room
+    //When user disconnects
+    socket.on('disconnect',function(){
+        var room_id = disconnectRemoveSocketID(socket.id);
+        var users_in_room = getAllUsersFromRoom(room_id);
+        io.in(room_id).emit('updatePlayersTable',users_in_room);
+    });
+
+
+
+    // Host Events
+    // When user creates room
     socket.on('createRoom',function (data){
         if(checkRoom(data.room)){
             console.log('Failed to create room:',data);
@@ -63,6 +73,13 @@ io.on('connection', (socket) =>{
             const user = userJoins(socket.id, data.name, data.room, data.host);
             socket.join(user.room);
             socket.emit('roomCreateRequestAccepted',data);
+            var users_in_room = getAllUsersFromRoom(data.room);
+            socket.emit('updatePlayersTable',users_in_room);
         }
     });
+
+    // When host starts game
+    //socket.on('startGame', function(){
+
+    //});
 });

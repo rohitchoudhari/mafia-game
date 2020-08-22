@@ -12,6 +12,11 @@ function getCurrentUser(id){
     return users.find(user => user.id === id);
 };
 
+//Get all users
+function getAllUsers(){
+    return users;
+}
+
 // Get all users from a particular room
 function getAllUsersFromRoom(room){
     users_in_room = [];
@@ -31,17 +36,31 @@ function isUserRoomPairAbsent(data){
     users.forEach(element => {
         var elementName = JSON.stringify(element.username);
         var elementRoom = JSON.stringify(element.room);
-        console.log('Checker',( elementName === dataName))
         if( elementName === dataName && dataRoom === elementRoom){
             flag = false;
         }
     });
     return flag;
 }
+// User from Socket ID
+function disconnectRemoveSocketID(socketid){
+    var room_id;
+    var element_to_delete;
+    users.forEach(element => {
+        if(element.id === socketid){
+            room_id = element.room;
+            index_to_delete = users.indexOf(element);
+        }
+    });
+    users.splice(index_to_delete,1);
+    return room_id;
+}
 
 module.exports = {
     userJoins,
     getCurrentUser,
     getAllUsersFromRoom,
-    isUserRoomPairAbsent
+    isUserRoomPairAbsent,
+    disconnectRemoveSocketID,
+    getAllUsers
 };
